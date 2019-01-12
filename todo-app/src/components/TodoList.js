@@ -1,14 +1,15 @@
 import React from 'react';
+import { TodoListItem } from '../components/TodoListItem';
 
-const TodoList = () => (
-    <ul>
-        <li>
-            <div className="custom-control custom-checkbox">
-                <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                <label className="custom-control-label" for="customCheck1">Check this custom checkbox</label>
-            </div>
-        </li>
-    </ul>
-)
+const TodoList = (props) => {
+    const TodoItem = props.todos.map((Todo) => {
+        return <TodoListItem Todo={Todo} />
+    })
+    return (
+        <ul className="list-unstyled">
+            {TodoItem}
+        </ul>
+    )
+}
 
 export default TodoList;
