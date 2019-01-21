@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO } from '../actions/index';
+import { ADD_TODO, TOGGLE_TODO } from '../typeCodes';
 
 export default function todos(state = [], action) {
     switch (action.type) {

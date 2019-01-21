@@ -1,9 +1,18 @@
 import React from 'react';
-import { TodoListItem } from '../components/TodoListItem';
+import TodoListItem from '../components/TodoListItem';
 
-const TodoList = (props) => {
-    const TodoItem = props.todos.map((Todo) => {
-        return <TodoListItem Todo={Todo} />
+
+const TodoList = ({ todos, toggleTodo }) => {
+    if (!todos)
+        return false;
+
+    const TodoItem = todos.map((todo, index) => {
+        return <TodoListItem
+            key={index}
+            keyIndex={'index-' + index}
+            todo={todo}
+            isChecked={todo.completed}
+            onToggleTodo={() => toggleTodo(index)} />
     })
     return (
         <ul className="list-unstyled">
@@ -11,5 +20,6 @@ const TodoList = (props) => {
         </ul>
     )
 }
+
 
 export default TodoList;

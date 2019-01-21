@@ -8,31 +8,35 @@ const AddTodo = (props) => {
     let input;
     return (
         <div>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={e => { onSubmit(e, input, props) }}>
                 <input ref={node => { input = node }} className="form-control" type="text" placeholder="What needs to be done?" />
             </form>
         </div>
     )
 }
 
-function onSubmit(e) {
+const onSubmit = (e, input, props) => {
     let addTodoText = input.value;
-    e.preventDefault();
+    preventReload(e);
     props.addTodo(addTodoText);
+    resetInput(input);
     console.log(store.getState());
-    resetInput();
 }
 
-function resetInput() {
+const preventReload = (e) => {
+    e.preventDefault();
+}
+
+const resetInput = (input) => {
     input.value = '';
 }
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     return {
         todos: state.todos
     }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ addTodo: addTodo }, dispatch)
 }
 
